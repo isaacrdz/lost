@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>	
+</head>
+<body>
+	
+</body>
+</html>
+
+
+
+
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<form method="post">{% csrf_token %}
+					<h1>
+						
+					¿Estás seguro que deseas borrar la persona "{{ object }}"?
+					</h1>
+					<input class="btn btn-warning" type="submit" value="Submit" />
+				</form>
+			</div>
+		</div>
+	</div>
+</section>

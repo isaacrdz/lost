@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>	
+</head>
+<body>
+<section>
+	<div class="container">
+		<div class="row">
+			<div class="text-center col-md-12">
+				<h1>Persons</h1>
+    			<a href="{% url "persons:new" %}">Add Lost Persons</a>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="session">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+				
+					{% if user.is_authenticated %}
+					<p>You are login. Hola {{ user.username }} </p>
+					<a class="btn btn-primary " href="{% url "persons:logout" %} ">logout</a> <br>
+					{% else %}
+					<p>You are not login. Please Log in </p>
+					
+					<a class="btn btn-primary " href="{% url "persons:authentication" %}">Login</a>
+
+
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<br>
+
+<section id="persons">
+	<div class="container">
+		<div class="row">
+			{% for person in object_list %}
+			<div class="col-md-4">
+					<ul class="list-group">
+						<li class="list-group-item">Name:{{person.name}} </li>
+						<li class="list-group-item">Age:{{person.age}}</li>
+						<li class="list-group-item">Description:{{person.description}}</li>
+						<li class="list-group-item">User: {{ user.username }}</li>
+						<a href="{% url "persons:detail" person.id %}" class="list-group-item">More</a>
+						<a href="{% url "persons:edit" person.id %}" class="list-group-item">Edit</a>
+						<a href="{% url "persons:delete" person.id %}" class="list-group-item">Delete</a>
+					</ul>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+	
+</body>
+</html>
+
+                
