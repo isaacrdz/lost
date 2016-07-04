@@ -44,6 +44,16 @@ class PersonCreation(CreateView):
     model = Person
     success_url = reverse_lazy('persons:list')
     fields = ['name', 'age','description',]
+    
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        
+        is form.is_valid():
+            setattr(form.instance, 'user', request.user)
+            
+            return super(PersonCreation, self).form_valid(form)
+        else:
+            return super(PersionCreation, self).form_invalid(form)
 
 
 class PersonUpdate(UpdateView):
