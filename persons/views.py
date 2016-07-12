@@ -6,7 +6,6 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 
 
-from django.shortcuts import render
 from django.core.urlresolvers import reverse_lazy
 
 from django.template import loader
@@ -48,12 +47,12 @@ class PersonCreation(CreateView):
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         
-        is form.is_valid():
+        if form.is_valid():
             setattr(form.instance, 'user', request.user)
             
             return super(PersonCreation, self).form_valid(form)
         else:
-            return super(PersionCreation, self).form_invalid(form)
+            return super(PersonCreation, self).form_invalid(form)
 
 
 class PersonUpdate(UpdateView):
